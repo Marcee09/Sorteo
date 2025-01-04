@@ -1,9 +1,14 @@
 .container-primerOpcion {
-    max-width: 800px;
+    max-width: 600px;
     margin: 2rem auto;
     background-color: #f8f4f5;
     border-radius: 15px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  h1{
+    color: #f74780;
+    font-family: Arial, Helvetica, sans-serif;
   }
   
   .card-S {
@@ -96,7 +101,7 @@
     display: block;
     margin: 1.5rem auto;
     padding: 0.75rem 2rem;
-    background-color: #FA8331;
+    background-color: #f74780;
     color: white;
     border: none;
     border-radius: 8px;
@@ -159,7 +164,7 @@ textarea::-webkit-scrollbar {
     font-size: 0.9rem;
     color: #444;
     background-color: #f8f4f5;
-    border: 2px solid #FA8331;
+    border: 2px solid #f74780;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease, border-color 0.3s ease;
@@ -177,7 +182,7 @@ textarea::-webkit-scrollbar {
   input[type="file"]::-webkit-file-upload-button {
     font-size: 0.9rem;
     padding: 0.4rem 0.8rem;
-    background-color: #FA8331;
+    background-color: #f74780;
     border: none;
     border-radius: 4px;
     color: white;

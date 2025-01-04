@@ -39,6 +39,7 @@ const PrimerOpcion = () => {
   return (
     <div className="container-primerOpcion">
         <div className='card-S'>
+            <h1>Opciones</h1>
             <input name="nombre" type="text" placeholder="Ingresa el nombre del sorteo" />
             <div className="input-number-group">
                 <label className='labelNumber' htmlFor="ganadores">Cantidad de ganadores</label>
