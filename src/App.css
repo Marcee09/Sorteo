@@ -1,120 +1,206 @@
+/* Variables globales para consistencia en colores y valores */
+:root {
+  --primary-color: #FD0A60;
+  --gradient-start: #FA8331;
+  --gradient-middle: #FC2954;
+  --gradient-end: #FD0A60;
+  --text-light: #fdfdfd;
+  --text-dark: #363434;
+  --spacing-unit: 1rem;
+  --transition-speed: 0.3s;
+}
+
+/* Reset y estilos base */
 html, body {
   width: 100%;
-  margin: 0; 
-  padding: 0; 
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box; /* Hace que el padding y los bordes se incluyan en el tamaño total */
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+  scroll-behavior: smooth;
 }
 
 #root {
   text-align: center;
-  min-height: 100%;
-}
-
-.bannerHome {
-  background: linear-gradient(to left, #FA8331, #FC2954, #FD0A60);
-  padding: 5%;
-  color: #fdfdfd;
-  margin: 0;
-}
-
-.bannerHome h1{
-  text-decoration:double;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.bannerHome p{
-  font-size: 1.5rem;
-}
-
-.TextOpcion{
-  padding: 40px 20px 20px 20px;
-  color: #363434;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.cardlinks {
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
-  padding: 0 0 5% 0;
-  gap: 30px; 
+  flex-direction: column;
+}
+
+/* Banner principal mejorado */
+.bannerHome {
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-middle), var(--gradient-end));
+  padding: calc(var(--spacing-unit) * 4);
+  color: var(--text-light);
+  margin: 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.bannerHome::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.bannerHome h1 {
+  font-size: 3.5rem;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.bannerHome p {
+  font-size: 1.5rem;
+  margin-top: var(--spacing-unit);
+  opacity: 0.9;
+  animation: fadeInUp 0.8s ease-out 0.2s backwards;
+}
+
+/* Sección de opciones */
+.TextOpcion {
+  padding: calc(var(--spacing-unit) * 3) var(--spacing-unit);
+  color: var(--text-dark);
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* Grid de tarjetas mejorado */
+.cardlinks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: calc(var(--spacing-unit) * 2);
+  padding: calc(var(--spacing-unit) * 2);
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .cardlinks .card {
   position: relative;
-  width: 500px; 
-  height: 400px; 
+  height: 400px;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform var(--transition-speed);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.cardlinks .card:hover {
+  transform: translateY(-10px);
 }
 
 .cardlinks img {
-  width: 100%; 
-  height: 100%; 
-  object-fit: cover; /* Esto asegura que las imágenes mantengan la proporción y se ajusten sin distorsión */
-  border-radius: 10px; 
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  filter: brightness(50%);
+  transition: filter var(--transition-speed), transform var(--transition-speed);
+}
+
+.cardlinks .card:hover img {
   filter: brightness(40%);
+  transform: scale(1.05);
 }
 
 .cardlinks .button-overlay {
   position: absolute;
-  top: 50%; 
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* Centra el botón exactamente en el medio */
-  padding: 15px 40px 15px 40px;
-  background-color: #FD0A60;
-  color: #ffff;
-  border: none;
-  cursor: pointer;
-  font-size: 25px;
-  font-weight: bold;
-  border-radius: 5%;
+  transform: translate(-50%, -50%);
+  padding: calc(var(--spacing-unit) * 1.2) calc(var(--spacing-unit) * 2.5);
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  border: 2px solid transparent;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border-radius: 50px;
   text-decoration: none;
-  font-family: Arial, Helvetica, sans-serif;
+  transition: all var(--transition-speed);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .cardlinks .button-overlay:hover {
-  background-color: rgba(0, 0, 0, 0.8); 
-  color: aliceblue;
+  background-color: transparent;
+  border-color: var(--text-light);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
-.navbar.dark-theme {
-  background-color: #333;
-  color: white;
-}
-
+/* Tema oscuro */
 body.dark-theme {
-  background-color: #121212; 
-  color: #ffffff; 
+  background-color: #121212;
+  color: var(--text-light);
 }
 
 body.dark-theme .navbar {
   background-color: #1f1f1f;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-body.dark-theme .navbar li img{
-  background-color: #DDB37D;
-}
-
-body.dark-theme .bannerHome {
-  color: #f0f0f0;
+body.dark-theme .TextOpcion {
+  color: var(--text-light);
 }
 
 body.dark-theme .card {
   background-color: #2b2b2b;
-  border: 1px solid #444;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-body.dark-theme .TextOpcion{
-  color: #f0f0f0;
-}
-
-
+/* Footer */
 footer {
-  text-align: center;
   background-color: #333;
-  color: white;
-  padding: 10px;
-  margin-top: auto; /* Empuja el footer al final */
+  color: var(--text-light);
+  padding: calc(var(--spacing-unit) * 1.5);
+  margin-top: auto;
 }
 
+/* Animaciones */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .bannerHome h1 {
+    font-size: 2.5rem;
+  }
+  
+  .bannerHome p {
+    font-size: 1.2rem;
+  }
+  
+  .cardlinks {
+    grid-template-columns: 1fr;
+    padding: var(--spacing-unit);
+  }
+  
+  .cardlinks .card {
+    height: 300px;
+  }
+}

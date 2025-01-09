@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import './Nav.css';
 import ImageSun from '../assets/sun.svg';
+import Logo from '../assets/logo.svg';
 import ImageMoon from '../assets/moon.svg';
 import { ThemeContext } from './ThemeContext';
 
@@ -10,7 +11,7 @@ const Nav = () => {
   return (
     <header className={`navbar ${darkMode ? 'dark-theme' : ''}`}>
       <div className="logo">
-        <span className="letter">Lucelle</span>
+        <img src={Logo}/>
       </div>
       <nav>
         <ul className="nav-links">

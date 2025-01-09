@@ -3,76 +3,188 @@ import { useNavigate } from 'react-router-dom';
 import './Opcion1.css';
 
 const PrimerOpcion = () => {
-  const [nombres, setNombres] = useState([]);
-  const [cantidadGanadores, setCantidadGanadores] = useState(0);
-  const [cantidadSuplentes, setCantidadSuplentes] = useState(0);
-  const navigate = useNavigate(); // Usamos navigate para redirigir
+  const [formData, setFormData] = useState({
+    nombreSorteo: '',
+    cantidadGanadores: 1,
+    cantidadSuplentes: 0,
+    nombres: [],
+    nombresTxt: ''
+  });
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handleNombresChange = (e) => {
-    setNombres(e.target.value.split('\n')); // Divide los nombres por líneas
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+
+    if (name === 'nombresTxt') {
+      setFormData(prev => ({
+        ...prev,
+        nombres: value.split('\n').filter(nombre => nombre.trim() !== '')
+      }));
+    }
   };
 
-  const handleArchivoCargado = (e) => {
+  const handleNumberChange = (e) => {
+    const { name, value } = e.target;
+    const numValue = Math.max(0, parseInt(value) || 0);
+    setFormData(prev => ({
+      ...prev,
+      [name]: numValue
+    }));
+  };
+
+  const handleArchivoCargado = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const text = event.target.result;
-      setNombres(text.split('\n').filter((nombre) => nombre.trim() !== ''));
-    };
-    reader.readAsText(file);
+    try {
+      setIsLoading(true);
+      const text = await readFileContent(file);
+      const nombresArray = text.split('\n').filter(nombre => nombre.trim() !== '');
+      
+      setFormData(prev => ({
+        ...prev,
+        nombres: nombresArray,
+        nombresTxt: nombresArray.join('\n')
+      }));
+      setError('');
+    } catch (err) {
+      setError('Error al leer el archivo. Por favor, intenta nuevamente.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const readFileContent = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (event) => resolve(event.target.result);
+      reader.onerror = (error) => reject(error);
+      reader.readAsText(file);
+    });
+  };
+
+  const validarFormulario = () => {
+    if (!formData.nombreSorteo.trim()) {
+      setError('Por favor, ingresa un nombre para el sorteo');
+      return false;
+    }
+    if (formData.nombres.length === 0) {
+      setError('Por favor, ingresa al menos un participante');
+      return false;
+    }
+    if (formData.cantidadGanadores <= 0) {
+      setError('La cantidad de ganadores debe ser mayor a 0');
+      return false;
+    }
+    if (formData.cantidadGanadores + formData.cantidadSuplentes > formData.nombres.length) {
+      setError('La cantidad total de ganadores y suplentes no puede superar el número de participantes');
+      return false;
+    }
+    return true;
   };
 
   const handleSortear = () => {
-    if (nombres.length === 0) {
-      alert('Por favor, ingresa nombres antes de sortear.');
-      return;
+    if (!validarFormulario()) return;
+
+    try {
+      setIsLoading(true);
+      const shuffled = [...formData.nombres].sort(() => Math.random() - 0.5);
+      const ganadores = shuffled.slice(0, formData.cantidadGanadores);
+      const suplentes = shuffled.slice(
+        formData.cantidadGanadores,
+        formData.cantidadGanadores + formData.cantidadSuplentes
+      );
+
+      navigate('/ganadores', {
+        state: {
+          nombreSorteo: formData.nombreSorteo,
+          ganadores,
+          suplentes,
+          totalParticipantes: formData.nombres.length
+        }
+      });
+    } catch (err) {
+      setError('Error al realizar el sorteo. Por favor, intenta nuevamente.');
+    } finally {
+      setIsLoading(false);
     }
-
-    const shuffled = [...nombres].sort(() => Math.random() - 0.5); 
-    const ganadores = shuffled.slice(0, cantidadGanadores);
-    const suplentes = shuffled.slice(cantidadGanadores, cantidadGanadores + cantidadSuplentes);
-
-    // Redirigir con los resultados
-    navigate('/ganadores', { state: { ganadores, suplentes } });
   };
 
   return (
     <div className="container-primerOpcion">
-      <div className='card-S'>
-        <h1>Opciones</h1>
-        <input name="nombre" type="text" placeholder="Ingresa el nombre del sorteo" />
+      <div className="card-S">
+        <h1>Configuración del Sorteo</h1>
         
+        {error && <div className="error-message">{error}</div>}
+        
+        <input
+          name="nombreSorteo"
+          type="text"
+          placeholder="Ingresa el nombre del sorteo"
+          value={formData.nombreSorteo}
+          onChange={handleInputChange}
+        />
+
         <div className="input-number-group">
-          <label className='labelNumber' htmlFor="ganadores">Cantidad de ganadores</label>
+          <label className="labelNumber" htmlFor="cantidadGanadores">
+            Cantidad de ganadores
+          </label>
           <input
-            id="ganadores"
+            id="cantidadGanadores"
+            name="cantidadGanadores"
             type="number"
-            value={cantidadGanadores}
-            onChange={(e) => setCantidadGanadores(Number(e.target.value))}
+            min="1"
+            value={formData.cantidadGanadores}
+            onChange={handleNumberChange}
           />
         </div>
 
         <div className="input-number-group">
-          <label className='labelNumber' htmlFor="suplentes">Cantidad de suplentes</label>
+          <label className="labelNumber" htmlFor="cantidadSuplentes">
+            Cantidad de suplentes
+          </label>
           <input
-            id="suplentes"
+            id="cantidadSuplentes"
+            name="cantidadSuplentes"
             type="number"
-            value={cantidadSuplentes}
-            onChange={(e) => setCantidadSuplentes(Number(e.target.value))}
+            min="0"
+            value={formData.cantidadSuplentes}
+            onChange={handleNumberChange}
           />
         </div>
 
-        <h3>Ingresa los nombres manualmente o desde un archivo</h3>
+        <h3>Ingresa los participantes manualmente o desde un archivo</h3>
         <textarea
-          value={nombres.join('\n')}
-          onChange={handleNombresChange}
+          name="nombresTxt"
+          value={formData.nombresTxt}
+          onChange={handleInputChange}
           placeholder="Escribe un nombre por línea o carga un archivo"
         />
-        <input type="file" accept=".txt,.csv" onChange={handleArchivoCargado} />
         
-        <button onClick={handleSortear}>Sortear</button>
+        <input
+          type="file"
+          accept=".txt,.csv"
+          onChange={handleArchivoCargado}
+          disabled={isLoading}
+        />
+
+        <div className="participants-count">
+          Total de participantes: {formData.nombres.length}
+        </div>
+
+        <button
+          onClick={handleSortear}
+          disabled={isLoading}
+          className={isLoading ? 'loading' : ''}
+        >
+          {isLoading ? 'Procesando...' : 'Sortear'}
+        </button>
       </div>
     </div>
   );

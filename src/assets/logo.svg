@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg"> 
+  <!-- Text Shadow -->
+  <text x="132" y="76" font-family="Arial" font-weight="bold" font-size="42" fill="#ffacac">
+    MSort
+  </text>
+  
+  <!-- Main Text -->
+  <text x="100" y="75" font-family="Arial" font-weight="bold" font-size="42">
+    <tspan fill="#FC2954">M</tspan>
+    <tspan fill="#FC2954">Sort</tspan>
+  </text>
+  
+  <!-- Decorative Elements -->
+  <circle cx="310" cy="25" r="8" fill="#FC2954" opacity="0.7"/>
+  <circle cx="340" cy="65" r="12" fill="#FC2954" opacity="0.5"/>
+  <circle cx="370" cy="45" r="6" fill="#FC2954" opacity="0.6"/>
+  
+  <!-- Connecting Lines -->
+  <path d="M310 35 Q325 50 340 65" stroke="#FC2954" stroke-width="2" fill="none" opacity="0.3"/>
+  <path d="M340 65 Q355 55 370 45" stroke="#FC2954" stroke-width="2" fill="none" opacity="0.3"/>
+</svg>

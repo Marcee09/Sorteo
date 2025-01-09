@@ -1,210 +1,290 @@
+/* Variables para consistencia en colores y valores */
+:root {
+  --primary-color: #f74780;
+  --primary-hover: #e63367;
+  --secondary-color: #FA8331;
+  --secondary-hover: #e67422;
+  --background-light: #f8f4f5;
+  --text-dark: #474646;
+  --text-light: #fff;
+  --error-color: #ff4444;
+  --success-color: #00C851;
+  --border-radius: 15px;
+  --transition-speed: 0.3s;
+}
+
+/* Contenedor principal */
 .container-primerOpcion {
-    max-width: 600px;
-    margin: 2rem auto;
-    background-color: #f8f4f5;
-    border-radius: 15px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Tarjeta principal */
+.card-S {
+  padding: 2.5rem;
+  background: linear-gradient(
+    to bottom,
+    var(--background-light) 0%,
+    var(--background-light) 80%,
+    rgba(250, 131, 49, 0.1) 100%
+  );
+  border-radius: var(--border-radius);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Encabezados */
+.card-S h1 {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.card-S h3 {
+  color: var(--text-dark);
+  margin: 2rem 0 1rem;
+  font-size: 1.3rem;
+  width: 70%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Inputs y campos de texto */
+input[type="text"],
+textarea {
+  width: 100%;
+  max-width: 300px;
+  margin: 1rem auto;
+  padding: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all var(--transition-speed);
+  background-color: var(--text-light);
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 3px rgba(250, 131, 49, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Grupo de inputs numéricos */
+.input-number-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.5rem auto;
+  gap: 1rem;
+  max-width: 500px;
+}
+
+.labelNumber {
+  font-size: 1rem;
+  color: var(--text-dark);
+ 
+  text-align: right;
+  margin: 0;
+}
+
+input[type="number"] {
+  width: 30px;
+  height: 30px;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 1.8rem;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  transition: all var(--transition-speed);
+}
+
+input[type="number"]:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 3px rgba(250, 131, 49, 0.1);
+}
+
+/* Área de texto */
+textarea {
+  height: 200px;
+  resize: vertical;
+  font-family: inherit;
+  line-height: 1.5;
+  padding: 1rem;
+}
+
+/* Botón de carga de archivo personalizado */
+.file-input-container {
+  margin: 1.5rem auto;
+  width: 80%;
+  max-width: 500px;
+}
+
+input[type="file"] {
+  display: block;
+  width: auto;
+  max-width: 250px;
+  margin: 1.5rem auto;
+  padding: 1rem;
+  background-color: var(--background-light);
+  border: 2px dashed var(--primary-color);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+}
+
+input[type="file"]:hover {
+  background-color: rgba(250, 131, 49, 0.1);
+  border-color: var(--secondary-color);
+}
+
+/* Botón principal */
+button {
+  display: inline-block;
+  min-width: 200px;
+  margin: 2rem auto;
+  padding: 1rem 2.5rem;
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+button:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(247, 71, 128, 0.3);
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Estados de loading */
+button.loading {
+  position: relative;
+  color: transparent;
+}
+
+button.loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: var(--text-light);
+  border-radius: 50%;
+  animation: spin 1s ease-in-out infinite;
+}
+
+/* Mensajes de error */
+.error-message {
+  background-color: rgba(255, 68, 68, 0.1);
+  color: var(--error-color);
+  padding: 1rem;
+  margin: 1rem auto;
+  border-radius: 8px;
+  max-width: 500px;
+  font-size: 0.9rem;
+  border-left: 4px solid var(--error-color);
+}
+
+/* Contador de participantes */
+.participants-count {
+  margin: 1rem 0;
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+/* Animaciones */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Estilos para la barra de desplazamiento */
+textarea::-webkit-scrollbar {
+  width: 12px;
+}
+
+textarea::-webkit-scrollbar-track {
+  background: var(--background-light);
+  border-radius: 10px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background: var(--secondary-color);
+  border-radius: 10px;
+  border: 3px solid var(--background-light);
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-hover);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .container-primerOpcion {
+    margin: 1.5rem;
   }
 
-  .container-primerOpcion h1{
-    color: #f74780;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-  
   .card-S {
-    padding: 2rem;
-    background: linear-gradient(360deg, #FA8331 0%, #f8f4f5 100%);
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(250, 131, 49, 0.2);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 100px;
-    width: 600px;
+    padding: 1.5rem;
   }
-  
-  .card-S h3 {
-    color: #474646;
-    margin: 1.5rem 0 1rem;
-    font-size: 1.2rem;
-    width: 70%;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-  
-  /* Estilos generales para inputs */
-  input,
-  textarea {
-    display: block;
-    width: 50%;
-    max-width: 500px;
-    margin: 0.75rem 0;
-    padding: 0.75rem 1rem;
-    border: 2px solid #ddd;
-    border-radius: 8px;
+
+  .card-S h1 {
     font-size: 1rem;
-    transition: border-color 0.3s ease;
   }
-  
+
+  .input-number-group {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .labelNumber {
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
   input[type="number"] {
     width: 50px;
     height: 50px;
-    padding: 0.5rem;
-    text-align: center;
-    margin: 0.5rem auto;
     font-size: 1.5rem;
   }
 
-  .labelNumber{
-        font-size: x-large;
-        padding-right: 50px;
+  input[type="text"] {
+    width: 200px;
   }
-  
-  /* Contenedor para el grupo de input numérico y su label */
-  .input-number-group {
-    display: flex;
-    flex-direction:row;
-    align-items: center;
-    margin: 1rem 0;
+
+  textarea{
+    width: 200px;
   }
-  
-  input:focus,
-  textarea:focus {
-    outline: none;
-    border-color: #FA8331;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #444;
-    font-weight: 500;
-    text-align: center;
-  }
-  
-  textarea {
-    height: 150px;
-    resize: vertical;
-    width: 50%;
-    margin: 1rem auto;
-  }
-  
-  input[type="file"] {
-    padding: 0.5rem 0;
-    border: none;
-    background: none;
-    width: 80%;
-    margin: 1rem auto;
-  }
-  
+
   button {
-    display: block;
-    margin: 1.5rem auto;
-    padding: 0.75rem 2rem;
-    background-color: #f74780;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 300px;
   }
-  
-  button:hover {
-    background-color: #e67422;
-  }
-  
-  .resultados {
-    margin-top: 2rem;
-    padding: 1.5rem;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 8px;
-    width: 50%;
-  }
-  
-  .resultados ul {
-    list-style: none;
-    padding: 0;
-    margin: 0.5rem 0 1.5rem;
-  }
-  
-  .resultados li {
-    padding: 0.5rem 1rem;
-    margin: 0.5rem 0;
-    background-color: #fff;
-    border-left: 4px solid #FA8331;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  }
-  
-  /* Estilo para la barra de scroll del textarea */
-textarea::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  textarea::-webkit-scrollbar-track {
-    background: #f8f4f5;
-    border-radius: 10px;
-  }
-  
-  textarea::-webkit-scrollbar-thumb {
-    background: #FA8331;
-    border-radius: 10px;
-  }
-  
-  textarea::-webkit-scrollbar-thumb:hover {
-    background: #e67422;
-  }
-  
-  /* Estilo para el botón de adjuntar archivo */
-  input[type="file"] {
-    display: block;
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-    color: #444;
-    background-color: #f8f4f5;
-    border: 2px solid #f74780;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-    text-align: center;
-    width: auto;
-    margin: 1rem auto;
-  }
-  
-  input[type="file"]:hover {
-    background-color: #FA8331;
-    color: #fff;
-    border-color: #e67422;
-  }
-  
-  input[type="file"]::-webkit-file-upload-button {
-    font-size: 0.9rem;
-    padding: 0.4rem 0.8rem;
-    background-color: #f74780;
-    border: none;
-    border-radius: 4px;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  input[type="file"]::-webkit-file-upload-button:hover {
-    background-color: #e67422;
-  }
-  
-  @media (max-width: 768px) {
-    .container-primerOpcion {
-      margin: 1rem;
-      padding: 1rem;
-    }
-  
-    .card-S {
-      padding: 1rem;
-    }
-  }
-  
+}
 
 
   

@@ -1,32 +1,46 @@
+
 import React from 'react';
-import './Ganadores.css'; // Archivo CSS para confeti y diseño
+import './Ganadores.css';
 import { useLocation } from 'react-router-dom';
 
 const Ganadores = () => {
   const location = useLocation();
-  const { ganadores, suplentes } = location.state || { ganadores: [], suplentes: [] };
+  const { ganadores = [], suplentes = [] } = location.state || {};
 
   return (
-      <div className="confetti">
-        <div className='card-S'>
-          <h1 className="felicidades">¡Felicidades a los Ganadores!</h1>
-          <div className='resultados'>
-          <h3>Ganadores</h3>
-          <ul>
-            {ganadores.map((nombre, index) => (
-              <li key={index}>{nombre}</li>
-            ))}
-          </ul>
-          <h3>Suplentes</h3>
-          <ul>
-            {suplentes.map((nombre, index) => (
-              <li key={index}>{nombre}</li>
-            ))}
-          </ul>
+    <div className="winners-container">
+      <div className="confetti-overlay"></div>
+      
+      <div className="winners-card">
+        <div className="card-header">
+          <h1>¡Felicidades a los Ganadores!</h1>
+        </div>
+        
+        <div className="card-content">
+          <div className="section">
+            <h2>Ganadores</h2>
+            <ul>
+              {ganadores.map((nombre, index) => (
+                <li key={index} className="winner-item">
+                  {nombre}
+                </li>
+              ))}
+            </ul>
           </div>
+
+          <div className="section">
+            <h2>Suplentes</h2>
+            <ul>
+              {suplentes.map((nombre, index) => (
+                <li key={index} className="substitute-item">
+                  {nombre}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-      
+      </div>
+    </div>
   );
 };
 
