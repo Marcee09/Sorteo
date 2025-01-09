@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Nav from './componentes/Nav';
 import Footer from './componentes/Footer';
 import PrimerOpcion from './pages/Opcion1'; 
+import TerceraOpcion from './pages/Opcion3';
 import './App.css';
 import ImageSExcel from '../src/assets/sorteoexcel.png'; 
 import ImageSInsta from '../src/assets/instagram.webp';
@@ -40,7 +41,7 @@ const App = () => {
                   </div>
                   <div className="card">
                     <img src={ImageSAlea} alt="Sorteo Aleatorio" />
-                    <Link to="/primer-opcion" className="button-overlay">
+                    <Link to="/tercera-opcion" className="button-overlay">
                       Crear
                     </Link>
                   </div>
@@ -49,6 +50,7 @@ const App = () => {
             }
           />
           <Route path="/primer-opcion" element={<PrimerOpcion />} />
+          <Route path="/tercera-opcion" element={<TerceraOpcion />} />
         </Routes>
         <Footer />
       </Router>

@@ -1,0 +1,206 @@
+.container-primerOpcion {
+    max-width: 600px;
+    margin: 2rem auto;
+    background-color: #f8f4f5;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .container-primerOpcion h1{
+    color: #f74780;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .card-S {
+    padding: 2rem;
+    background: linear-gradient(360deg, #FA8331 0%, #f8f4f5 100%);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(250, 131, 49, 0.2);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+    width: 600px;
+  }
+  
+  .card-S h3 {
+    color: #474646;
+    margin: 1.5rem 0 1rem;
+    font-size: 1.2rem;
+    width: 70%;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  /* Estilos generales para inputs */
+  input,
+  textarea {
+    display: block;
+    width: 50%;
+    max-width: 500px;
+    margin: 0.75rem 0;
+    padding: 0.75rem 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  
+  input[type="number"] {
+    width: 50px;
+    height: 50px;
+    padding: 0.5rem;
+    text-align: center;
+    margin: 0.5rem auto;
+    font-size: 1.5rem;
+  }
+
+  .labelNumber{
+        font-size: x-large;
+        padding-right: 50px;
+  }
+  
+  /* Contenedor para el grupo de input numérico y su label */
+  .input-number-group {
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    margin: 1rem 0;
+  }
+  
+  input:focus,
+  textarea:focus {
+    outline: none;
+    border-color: #FA8331;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #444;
+    font-weight: 500;
+    text-align: center;
+  }
+  
+  textarea {
+    height: 150px;
+    resize: vertical;
+    width: 50%;
+    margin: 1rem auto;
+  }
+  
+  input[type="file"] {
+    padding: 0.5rem 0;
+    border: none;
+    background: none;
+    width: 80%;
+    margin: 1rem auto;
+  }
+  
+  button {
+    display: block;
+    margin: 1.5rem auto;
+    padding: 0.75rem 2rem;
+    background-color: #f74780;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #e67422;
+  }
+  
+  .resultados {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    width: 50%;
+  }
+  
+  .resultados ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 1.5rem;
+  }
+  
+  .resultados li {
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0;
+    background-color: #fff;
+    border-left: 4px solid #FA8331;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Estilo para la barra de scroll del textarea */
+textarea::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  textarea::-webkit-scrollbar-track {
+    background: #f8f4f5;
+    border-radius: 10px;
+  }
+  
+  textarea::-webkit-scrollbar-thumb {
+    background: #FA8331;
+    border-radius: 10px;
+  }
+  
+  textarea::-webkit-scrollbar-thumb:hover {
+    background: #e67422;
+  }
+  
+  /* Estilo para el botón de adjuntar archivo */
+  input[type="file"] {
+    display: block;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    color: #444;
+    background-color: #f8f4f5;
+    border: 2px solid #f74780;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    text-align: center;
+    width: auto;
+    margin: 1rem auto;
+  }
+  
+  input[type="file"]:hover {
+    background-color: #FA8331;
+    color: #fff;
+    border-color: #e67422;
+  }
+  
+  input[type="file"]::-webkit-file-upload-button {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+    background-color: #f74780;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  input[type="file"]::-webkit-file-upload-button:hover {
+    background-color: #e67422;
+  }
+  
+  @media (max-width: 768px) {
+    .container-primerOpcion {
+      margin: 1rem;
+      padding: 1rem;
+    }
+  
+    .card-S {
+      padding: 1rem;
+    }
+  }
