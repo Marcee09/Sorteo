@@ -1,33 +1,17 @@
-/* Asegura que el HTML y el Body ocupen toda la altura */
 html, body {
+  width: 100%;
+  margin: 0; 
+  padding: 0; 
   height: 100%;
-  margin: 0;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box; /* Hace que el padding y los bordes se incluyan en el tamaño total */
 }
 
-/* Contenedor principal de la aplicación */
 #root {
-  display: flex;
-  flex-direction: column;
+  text-align: center;
   min-height: 100%;
 }
-
-.App {
-  display: flex;
-  flex-direction: column;
-  flex: 1; /* Ocupa el espacio disponible */
-}
-
-/* Footer al final */
-footer {
-  text-align: center;
-  background-color: #333;
-  color: white;
-  padding: 10px;
-  margin-top: auto; /* Empuja el footer al final */
-}
-
 
 .bannerHome {
   background: linear-gradient(to left, #FA8331, #FC2954, #FD0A60);
@@ -123,5 +107,14 @@ body.dark-theme .card {
 
 body.dark-theme .TextOpcion{
   color: #f0f0f0;
+}
+
+
+footer {
+  text-align: center;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  margin-top: auto; /* Empuja el footer al final */
 }
 
