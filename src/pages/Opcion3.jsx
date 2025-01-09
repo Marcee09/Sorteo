@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Opcion3.css';
 
 const TerceraOpcion = () => {
@@ -6,36 +7,41 @@ const TerceraOpcion = () => {
   const [cantidadSuplentes, setCantidadSuplentes] = useState(0);
   const [rangoDesde, setRangoDesde] = useState(0);
   const [rangoHasta, setRangoHasta] = useState(0);
-  const [resultado, setResultado] = useState({ ganadores: [], suplentes: [] });
+  const navigate = useNavigate(); // Hook para redirigir
 
   const handleSortear = () => {
+    console.log(cantidadGanadores, cantidadSuplentes, rangoDesde, rangoHasta);  // Verificar valores
     if (rangoDesde < 0 || rangoHasta < 0 || rangoHasta <= rangoDesde) {
       alert('Por favor, ingrese un rango válido (Desde menor que Hasta y sin números negativos).');
       return;
     }
-
+  
     if (cantidadGanadores + cantidadSuplentes > rangoHasta - rangoDesde + 1) {
       alert('El total de ganadores y suplentes no puede superar el tamaño del rango.');
       return;
     }
-
+  
     // Crear el rango de números
     const numeros = Array.from(
       { length: rangoHasta - rangoDesde + 1 },
       (_, i) => rangoDesde + i
     );
-
+    console.log(numeros);  // Verificar los números generados
+  
     // Mezclar números
     const numerosMezclados = [...numeros].sort(() => Math.random() - 0.5);
-
+  
     // Obtener ganadores y suplentes
     const ganadores = numerosMezclados.slice(0, cantidadGanadores);
     const suplentes = numerosMezclados.slice(
       cantidadGanadores,
       cantidadGanadores + cantidadSuplentes
     );
-
-    setResultado({ ganadores, suplentes });
+  
+    console.log(ganadores, suplentes);  // Verificar los resultados
+  
+    // Redirigir a la página de ganadores con los resultados
+    navigate('/ganadores', { state: { ganadores, suplentes } });
   };
 
   return (
@@ -79,20 +85,6 @@ const TerceraOpcion = () => {
           />
         </div>
         <button onClick={handleSortear}>Sortear</button>
-        <div className="resultados">
-          <h3>Ganadores</h3>
-          <ul>
-            {resultado.ganadores.map((numero, index) => (
-              <li key={index}>{numero}</li>
-            ))}
-          </ul>
-          <h3>Suplentes</h3>
-          <ul>
-            {resultado.suplentes.map((numero, index) => (
-              <li key={index}>{numero}</li>
-            ))}
-          </ul>
-        </div>
       </div>
     </div>
   );

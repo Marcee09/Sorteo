@@ -4,6 +4,7 @@ import Nav from './componentes/Nav';
 import Footer from './componentes/Footer';
 import PrimerOpcion from './pages/Opcion1'; 
 import TerceraOpcion from './pages/Opcion3';
+import Ganadores from './pages/Ganadores';
 import './App.css';
 import ImageSExcel from '../src/assets/sorteoexcel.png'; 
 import ImageSInsta from '../src/assets/instagram.webp';
@@ -51,6 +52,7 @@ const App = () => {
           />
           <Route path="/primer-opcion" element={<PrimerOpcion />} />
           <Route path="/tercera-opcion" element={<TerceraOpcion />} />
+          <Route path="/ganadores" element={<Ganadores />} />
         </Routes>
         <Footer />
       </Router>
